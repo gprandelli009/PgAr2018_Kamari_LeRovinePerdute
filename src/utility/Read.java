@@ -28,7 +28,8 @@ public class Read {
 						break;
 					case XMLStreamConstants.START_ELEMENT:
 						System.out.println("Tag " + xmlr.getLocalName());
-
+						if(xmlr.getLocalName().equals("city")); //aggingi citta
+						
 						String nCities = xmlr.getAttributeValue(null , "size");
 						if(nCities != null)
 							System.out.println(nCities);
@@ -52,13 +53,6 @@ public class Read {
 						String to = xmlr.getAttributeValue(null , "to");
 						if(to != null)
 							System.out.println(to);
-						break;
-					case XMLStreamConstants.NOTATION_DECLARATION:
-						System.out.println("Inside " + xmlr.getText());
-						break;
-					case XMLStreamConstants.CHARACTERS:
-						if (xmlr.getText().trim().length() > 0)
-							System.out.println("-> " + xmlr.getText());
 						break;
 					default:
 						break;

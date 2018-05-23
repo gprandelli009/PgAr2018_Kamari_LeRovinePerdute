@@ -15,7 +15,9 @@ public class MainRovine {
 		Map mappa = new Map();
 		Read r = new Read(mappa.getMap()); //Riempie la mappa
 		r.explore("src/resources/"+sceltaFile[scelta-1]+".xml");
-		System.out.println(mappa.toString());
+//		System.out.println(mappa.toString());
+		PathFinder ph = new PathFinder(mappa);
+		ph.algDijkstra();
 	}
 
 }

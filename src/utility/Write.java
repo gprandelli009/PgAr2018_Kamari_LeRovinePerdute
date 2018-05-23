@@ -1,50 +1,62 @@
-//package utility;
-//
-//import java.io.FileWriter;
-//import java.util.Vector;
-//
-//import javax.xml.stream.XMLOutputFactory;
-//import javax.xml.stream.XMLStreamException;
-//import javax.xml.stream.XMLStreamWriter;
-//
-//import Main.User;
-//
-//public class Write {
-//	public Write() {
-//
-//	}
-//	public boolean write(Vector<User> diary,String filename){
-//		System.out.println("Scrittura su file");
-//		XMLOutputFactory output = XMLOutputFactory.newInstance();
-//		XMLStreamWriter writer;
-//		try {
-//			writer = output.createXMLStreamWriter(new FileWriter(filename));
-//
-//			writer.writeComment("data saved");
-//			writer.writeStartDocument("utf-8","1.0");
-//			writer.writeStartElement("diary");
-//			for(User i: diary){
-//				writer.writeStartElement("user"); // End User
-//				writer.writeAttribute("index",""+i.hashCode());
-//				writer.writeStartElement("name");
-//				writer.writeCharacters(i.getName());
-//				writer.writeEndElement();
-//				writer.writeStartElement("surname");
-//				writer.writeCharacters(i.getSurname());
-//				writer.writeEndElement();
-//				writer.writeEndElement(); // End User
-//			}
-//			writer.writeEndElement(); // End Diary
-//			writer.writeEndDocument(); //End Document
-//			writer.flush();
-//			writer.close();
-//			System.out.println("End!");
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			System.out.print("Vecchio, problema!");
-//			e.printStackTrace();
-//			return false;
-//		}
-//		return true;
-//}
-//}
+package utility;
+
+import main.City;
+import main.MetztliTeam;
+import main.TonatiuhTeam;
+
+import java.io.FileWriter;
+import java.util.Map;
+
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
+
+public class Write {
+	Map<Integer, City> map;
+
+	public Write(Map<Integer, City> map) {
+		this.map = map;
+	}
+
+	public boolean write(String filename) {
+		System.out.println("Scrittura su file");
+		XMLOutputFactory output = XMLOutputFactory.newInstance();
+		XMLStreamWriter writer;
+		try {
+			writer = output.createXMLStreamWriter(new FileWriter(filename));
+
+			writer.writeStartDocument("utf-8", "1.0");
+			writer.writeStartElement("route");
+			writer.writeAttribute("team", TonatiuhTeam.getNomeTeam());
+//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam()); //da implementare dopo la classe PathFinder
+//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam());// "
+			for (Integer i : TonatiuhTeam.getPercorso()) {
+				writer.writeStartElement("city");
+				writer.writeAttribute("id", "" + i);
+				writer.writeAttribute("name", map.get(i).getNome());
+				writer.writeEndElement();
+			}
+			writer.writeEndElement(); // End Route
+
+			writer.writeStartElement("route");
+			writer.writeAttribute("team", MetztliTeam.getNomeTeam());
+//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam()); //da implementare dopo la classe PathFinder
+//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam());// "
+			for (Integer i : MetztliTeam.getPercorso()) {
+				writer.writeStartElement("city");
+				writer.writeAttribute("id", "" + i);
+				writer.writeAttribute("name", map.get(i).getNome());
+				writer.writeEndElement();
+			}
+			writer.writeEndElement(); // End Route
+			writer.writeEndDocument(); //End Document
+			writer.flush();
+			writer.close();
+			System.out.println("End!");
+		} catch (Exception e) {
+			System.out.print("Vecchio, problema!");
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+}

@@ -54,7 +54,7 @@ public class PathFinder {
 				}
 			}
 				
-		}while(!cittaDaControllare.isEmpty())
+		}while(!cittaDaControllare.isEmpty());
 		
 		
 	}

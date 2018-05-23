@@ -17,4 +17,38 @@ public class City {
 	public void addiungiNodo(int id){
 		nodi.add(id);
 	}
+
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Nome : ");
+		sb.append(nome);
+		sb.append("\n");
+		sb.append("Coordinata x: ");
+		sb.append(x);
+		sb.append("\n");
+		sb.append("Coordinata y: ");
+		sb.append(y);
+		sb.append("\n");
+		sb.append("Coordinata h: ");
+		sb.append(h);
+		sb.append("\n");
+		return sb.toString();
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getH() {
+		return h;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
 }

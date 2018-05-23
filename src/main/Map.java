@@ -10,6 +10,12 @@ public class Map {
 	}
 
 	public String toString(){
-		return cities.toString();
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<cities.size();i++){
+			sb.append(cities.get(i).toString());
+		}
+		return sb.toString();
 	}
+
+
 }

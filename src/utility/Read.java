@@ -30,11 +30,7 @@ public class Read {
 					new FileInputStream(filename));
 			while (xmlr.hasNext()) {
 				switch (xmlr.getEventType()) {
-					case XMLStreamConstants.START_DOCUMENT:
-						System.out.println("Start Read Doc " + filename);
-						break;
 					case XMLStreamConstants.START_ELEMENT:
-						System.out.println("Tag " + xmlr.getLocalName());
 						if(xmlr.getLocalName().equals("city")){
 							String idS = xmlr.getAttributeValue(null , "id");
 							id = Integer.parseInt(idS);

@@ -9,9 +9,9 @@ public class MainRovine {
 	public static void main(String[] args) {
 		int scelta;
 		for(int i=0;i<sceltaFile.length;i++){
-			System.out.println((i+1)+"_"+sceltaFile[i]);
+			System.out.println("Inserire "+(i+1)+"_"+sceltaFile[i]);
 		}
-		scelta = InputDati.leggiIntero("Inserisci il numero del file da leggere",1,6);
+		scelta = InputDati.leggiIntero("Inserisci il numero del file da leggere : ",1,6);
 		Map mappa = new Map();
 		Read r = new Read(mappa.getMap()); //Riempie la mappa
 		r.explore("src/resources/"+sceltaFile[scelta-1]+".xml");

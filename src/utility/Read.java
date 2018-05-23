@@ -22,13 +22,13 @@ public class Read {
 
 	public void explore(String filename) {
 		try {
+			City c = null;
+			int id = 0;
 
 			XMLInputFactory xmlif = XMLInputFactory.newInstance();
 			XMLStreamReader xmlr = xmlif.createXMLStreamReader(filename,
 					new FileInputStream(filename));
 			while (xmlr.hasNext()) {
-				City c = null;
-				int id = 0;
 				switch (xmlr.getEventType()) {
 					case XMLStreamConstants.START_DOCUMENT:
 						System.out.println("Start Read Doc " + filename);
@@ -50,7 +50,7 @@ public class Read {
 						if(xmlr.getLocalName().equals("link")){
 							String toS = xmlr.getAttributeValue(null , "to");
 							int to = Integer.parseInt(toS);
-							c.addiungiNodo(to);
+							c.addiungiNodo(to); //Possibile errore se file xml diverso da consegna
 						}
 						break;
 					case XMLStreamConstants.END_ELEMENT:

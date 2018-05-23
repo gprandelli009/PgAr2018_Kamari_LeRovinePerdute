@@ -1,7 +1,11 @@
 package main;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Map {
-	ArrayList<City> cities;
+	private HashMap<Integer,City> cities = new HashMap<>();
+
+	public HashMap<Integer, City> getCities() {
+		return cities;
+	}
 }

@@ -12,7 +12,7 @@ public class PathFinder {
 	
 	}
 	
-	public ArrayList<Integer> algDijkstra(Map m){
+	public void algDijkstra(Map m){
 		Set <Integer> cittaDaControllare = new HashSet <Integer>();
 		ArrayList <Double> distanzaCart = new ArrayList <Double>();
 		ArrayList <Double> altezze = new ArrayList <Double>();
@@ -32,7 +32,7 @@ public class PathFinder {
 		altezze.set(0, 0.0);
 		
 		do {
-			int t;
+			int t = 0;
 			double temp = Double.POSITIVE_INFINITY;
 			for (Integer i:cittaDaControllare) {
 				if(altezze.get(i)< temp) {
@@ -47,10 +47,10 @@ public class PathFinder {
 				if (!cittaDaControllare.contains(i))
 					continue;
 				
-				double dist = altezze.get(t) + Math.abs(m.getMap().get(t).getAltezza() - m.getMap().get(i).getAltezza());
+				double dist = altezze.get(t) + Math.abs(m.getMap().get(t).getH() - m.getMap().get(i).getH());
 				if (dist < altezze.get(i)) {
-					altezze.get(i) = dist;
-					precedente(i) = t;
+					altezze.set(i, dist);
+					precedente.set(i, t);
 				}
 			}
 				

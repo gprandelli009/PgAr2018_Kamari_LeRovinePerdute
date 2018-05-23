@@ -50,5 +50,8 @@ public class City {
 	public String getNome() {
 		return nome;
 	}
+	public ArrayList<Integer> getNodi(){
+		return nodi;
+	}
 
 }

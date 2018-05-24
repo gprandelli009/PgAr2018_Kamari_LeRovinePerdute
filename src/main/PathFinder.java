@@ -1,18 +1,19 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class PathFinder {
-	private Map m;
+	private HashMap<Integer,City> m;
 
-	public PathFinder(Map m) {
+	public PathFinder(HashMap<Integer,City> m) {
 		this.m = m;
 	
 	}
 	
-	public void algDijkstra(){
+	public void algDijkstra(String team){
 		Set <Integer> cittaDaControllare = new HashSet <Integer>();
 		ArrayList <Double> distanzaCart = new ArrayList <Double>();
 		ArrayList <Double> altezze = new ArrayList <Double>();
@@ -22,7 +23,7 @@ public class PathFinder {
 		//double distanzaCart = Double.POSITIVE_INFINITY;
 		//double altezze = Double.POSITIVE_INFINITY;
 		
-		for (Integer i:m.getMap().keySet()) {
+		for (Integer i:m.keySet()) {
 			//distanzaCart.add(Double.POSITIVE_INFINITY);
 			altezze.add(Double.POSITIVE_INFINITY);
 			precedente.add(null);  //unknown?
@@ -42,12 +43,24 @@ public class PathFinder {
 			}
 			cittaDaControllare.remove(t);
 			
-			ArrayList <Integer> vicini = m.getMap().get(t).getNodi();
+			ArrayList <Integer> vicini = m.get(t).getNodi();
 			for (Integer i :vicini) {
 				if (!cittaDaControllare.contains(i))
 					continue;
-				
-				double dist = altezze.get(t) + Math.abs(m.getMap().get(t).getH() - m.getMap().get(i).getH());
+				double dist;
+
+				if(team.equals(MetztliTeam.getNomeTeam())) {
+					int h1 = m.get(t).getH();
+					int h2 = m.get(i).getH();
+					dist = altezze.get(t) + Math.abs(h1 - h2);
+				}
+				else {
+					int x1 = m.get(t).getX();
+					int y1 = m.get(t).getY();
+					int x2 = m.get(i).getX();
+					int y2 = m.get(i).getY();
+					dist = altezze.get(t) + Math.hypot(x2-x1,y2-y1);
+				}
 				if (dist < altezze.get(i)) {
 					altezze.set(i, dist);
 					precedente.set(i, t);
@@ -56,6 +69,7 @@ public class PathFinder {
 				
 		}while(!cittaDaControllare.isEmpty());
 		
-		System.out.println(altezze.get(m.getMap().size()-1));
+//		System.out.println(altezze.get(m.getMap().size()-1));
+		System.out.println(altezze);
 	}
 }

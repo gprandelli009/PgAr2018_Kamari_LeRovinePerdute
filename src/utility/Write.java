@@ -27,8 +27,8 @@ public class Write {
 			writer.writeStartDocument("utf-8", "1.0");
 			writer.writeStartElement("route");
 			writer.writeAttribute("team", TonatiuhTeam.getNomeTeam());
-//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam()); //da implementare dopo la classe PathFinder
-//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam());// "
+			writer.writeAttribute("cost", ""+TonatiuhTeam.getCostoPercorso());
+			writer.writeAttribute("cities", ""+TonatiuhTeam.getPercorso().size());
 			for (Integer i : TonatiuhTeam.getPercorso()) {
 				writer.writeStartElement("city");
 				writer.writeAttribute("id", "" + i);
@@ -39,8 +39,8 @@ public class Write {
 
 			writer.writeStartElement("route");
 			writer.writeAttribute("team", MetztliTeam.getNomeTeam());
-//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam()); //da implementare dopo la classe PathFinder
-//			writer.writeAttribute("team",TonatiuhTeam.getNomeTeam());// "
+			writer.writeAttribute("cost", ""+MetztliTeam.getCostoPercorso());
+			writer.writeAttribute("cities", ""+MetztliTeam.getPercorso().size());
 			for (Integer i : MetztliTeam.getPercorso()) {
 				writer.writeStartElement("city");
 				writer.writeAttribute("id", "" + i);

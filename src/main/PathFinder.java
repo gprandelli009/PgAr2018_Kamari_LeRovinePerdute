@@ -41,6 +41,7 @@ public class PathFinder {
 					temp = altezze.get(i);
 				}	
 			}
+			precedente.set(0,0);
 			cittaDaControllare.remove(t);
 			
 			ArrayList <Integer> vicini = m.get(t).getNodi();
@@ -68,8 +69,24 @@ public class PathFinder {
 			}
 				
 		}while(!cittaDaControllare.isEmpty());
-		
-//		System.out.println(altezze.get(m.getMap().size()-1));
-		System.out.println(altezze);
+		if(team.equals(MetztliTeam.getNomeTeam())) {
+			MetztliTeam.setCostoPercorso(altezze.get(altezze.size()-1));
+			MetztliTeam.setPercorso(ricavaPercorso(precedente));
+		}
+		else {
+			TonatiuhTeam.setCostoPercorso(altezze.get(altezze.size()-1));
+			TonatiuhTeam.setPercorso(ricavaPercorso(precedente));
+		}
+	}
+
+	private ArrayList<Integer> ricavaPercorso(ArrayList<Integer> precedente){
+		int ultimo = precedente.get(precedente.size()-1);
+		ArrayList<Integer> percorsoRitroso = new ArrayList<>();
+		do{
+			percorsoRitroso.add(ultimo);
+			ultimo = precedente.get(ultimo);
+		}while(ultimo!=0);
+		percorsoRitroso.add(0);
+		return percorsoRitroso;
 	}
 }

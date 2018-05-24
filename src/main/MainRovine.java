@@ -2,6 +2,7 @@ package main;
 
 import utility.InputDati;
 import utility.Read;
+import utility.Write;
 
 public class MainRovine {
 	private static final String[] sceltaFile
@@ -19,6 +20,8 @@ public class MainRovine {
 		PathFinder ph = new PathFinder(mappa.getMap());
 		ph.algDijkstra(MetztliTeam.getNomeTeam());
 		ph.algDijkstra(TonatiuhTeam.getNomeTeam());
+		Write wr = new Write(mappa.getMap());
+		wr.write("Percorso.xml");
 	}
 
 }

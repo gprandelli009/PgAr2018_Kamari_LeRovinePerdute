@@ -37,6 +37,8 @@ public class PathFinder {
 					temp = altezze.get(i);
 				}
 			}
+			if(temp == Double.POSITIVE_INFINITY)
+				break; //Risolve il caso del file 4
 			cittaDaControllare.remove(t);
 
 			ArrayList<Integer> vicini = m.get(t).getNodi();

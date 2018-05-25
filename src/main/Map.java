@@ -2,6 +2,11 @@ package main;
 
 import java.util.HashMap;
 
+/**
+ * Mappa con chiave id e valore l'oggetto città.
+ * 
+ * @since 2018-05-25
+ */
 public class Map {
 	private HashMap<Integer,City> cities = new HashMap<>();
 

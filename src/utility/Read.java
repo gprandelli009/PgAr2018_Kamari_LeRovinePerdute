@@ -50,6 +50,8 @@ public class Read {
 						}
 						break;
 					case XMLStreamConstants.END_ELEMENT:
+						//Quando si chiude il tag city, se il file xml e` corretto, l'oggetto
+						//c contiene tutti i dati necessari e quindi lo aggiungo alla mappa
 						if(xmlr.getLocalName().equals("city"))
 							cities.put(id,c);
 					default:

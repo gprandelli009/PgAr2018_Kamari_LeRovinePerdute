@@ -24,10 +24,10 @@ public class MainRovine {
 		r.explore("src/resources/"+sceltaFile[scelta-1]+".xml");
 //		System.out.println(mappa.toString());
 		PathFinder ph = new PathFinder(mappa.getMap());
-		ph.algDijkstra(MetztliTeam.getNomeTeam());
-		ph.algDijkstra(TonatiuhTeam.getNomeTeam());
+		ph.algDijkstra(MetztliTeam.getNomeTeam()); 		//Riempio la classe MetztliTeam con i costi percorso
+		ph.algDijkstra(TonatiuhTeam.getNomeTeam());		//Riempio la classe tonatiuhTeam con i costi percorso
 		Write wr = new Write(mappa.getMap());
-		wr.write("Percorso.xml");
+		wr.write("Percorso.xml");						//Scrivo su file i risultati
 	}
 
 }

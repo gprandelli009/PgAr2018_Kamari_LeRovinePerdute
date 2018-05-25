@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class City {
 	private int x,y,h;
 	private String nome;
-	ArrayList<Integer> nodi = new ArrayList<>();
+	ArrayList<Integer> nodi = new ArrayList<>(); //Citta con cui e` collegato
 
 	public City(int x, int y, int h, String nome) {
 		this.x = x;

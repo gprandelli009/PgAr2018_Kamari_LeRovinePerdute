@@ -30,7 +30,8 @@ public class PathFinder {
 			cittaDaControllare.add(i);
 		}
 		
-		distanza.set(0, 0.0);
+		distanza.set(0, 0.0); 	//Imposto il costo del percorso per arrivare al campo base 0
+		precedente.set(0,0); 	//Il precedente del campo base e` se stesso
 		
 		do {
 			int t = 0;
@@ -41,7 +42,6 @@ public class PathFinder {
 					temp = distanza.get(i);
 				}	
 			}
-			precedente.set(0,0);
 			cittaDaControllare.remove(t);
 			
 			ArrayList <Integer> vicini = m.get(t).getNodi();
@@ -50,11 +50,14 @@ public class PathFinder {
 					continue;
 				double dist;
 
+				//Calcolo costo per il team metzli
 				if(team.equals(MetztliTeam.getNomeTeam())) {
 					int h1 = m.get(t).getH();
 					int h2 = m.get(i).getH();
 					dist = distanza.get(t) + Math.abs(h1 - h2);
 				}
+				
+				//Calcolo il costo per il team Tonatiuh
 				else {
 					int x1 = m.get(t).getX();
 					int y1 = m.get(t).getY();
@@ -69,6 +72,8 @@ public class PathFinder {
 			}
 				
 		}while(!cittaDaControllare.isEmpty());
+		
+		//Salvo nella classe static dei due team i relativi valori calcolati
 		if(team.equals(MetztliTeam.getNomeTeam())) {
 			MetztliTeam.setCostoPercorso(distanza.get(distanza.size()-1));
 			MetztliTeam.setPercorso(ricavaPercorso(precedente));
@@ -81,8 +86,8 @@ public class PathFinder {
 
 	/** dato un ArrayList restituisce un ArrayList di Integer che ha come primo elemento l'ultimo
 	 * elemento dell'ArrayList d'ingresso e come successivi elementi gli elementi a ritroso
-	 * che formano il cammino minimo dall'elemento finale (Rovine Perdute) a quello iniziale (Campo Base).
-	 *metodo privato.
+	 * che formano il cammino minimo dall'elemento finale a quello iniziale.<br>
+	 * <b>metodo privato.</b>
 	*@param precedente. 
 	*@return ArrayList ritorna un ArrayList di Integer. 
 	*/

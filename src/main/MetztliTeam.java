@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class MetztliTeam {
 	private static double costoPercorso;
 	private static ArrayList<Integer> percorso;
-	public static final String DESCRIZIONE_TEAM=
+	public static final String DESCRIZIONE_TEAM =
 			"Il veicolo di questo team consuma carburante in base all'altitudine percorsa";
-	private static final String NOME_TEAM="Metzli";
+	private static final String NOME_TEAM = "Metzli";
 
 	public static double getCostoPercorso() {
 		return costoPercorso;

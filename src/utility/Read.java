@@ -14,7 +14,7 @@ import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
 public class Read {
-	private HashMap<Integer,City> cities;
+	private HashMap<Integer, City> cities;
 
 	public Read(HashMap<Integer, City> cities) {
 		this.cities = cities;
@@ -31,27 +31,29 @@ public class Read {
 			while (xmlr.hasNext()) {
 				switch (xmlr.getEventType()) {
 					case XMLStreamConstants.START_ELEMENT:
-						if(xmlr.getLocalName().equals("city")){
-							String idS = xmlr.getAttributeValue(null , "id");
+						if (xmlr.getLocalName().equals("city")) {
+							String idS = xmlr.getAttributeValue(null, "id");
 							id = Integer.parseInt(idS);
-							String name = xmlr.getAttributeValue(null , "name");
-							String xS = xmlr.getAttributeValue(null , "x");
+							String name = xmlr.getAttributeValue(null, "name");
+							String xS = xmlr.getAttributeValue(null, "x");
 							int x = Integer.parseInt(xS);
-							String yS = xmlr.getAttributeValue(null , "y");
+							String yS = xmlr.getAttributeValue(null, "y");
 							int y = Integer.parseInt(yS);
-							String hS = xmlr.getAttributeValue(null , "h");
+							String hS = xmlr.getAttributeValue(null, "h");
 							int h = Integer.parseInt(hS);
-							c = new City(x,y,h,name);
+							c = new City(x, y, h, name);
 						}
-						if(xmlr.getLocalName().equals("link")){
-							String toS = xmlr.getAttributeValue(null , "to");
+						if (xmlr.getLocalName().equals("link")) {
+							String toS = xmlr.getAttributeValue(null, "to");
 							int to = Integer.parseInt(toS);
 							c.addiungiNodo(to); //Possibile errore se file xml diverso da consegna
 						}
 						break;
 					case XMLStreamConstants.END_ELEMENT:
-						if(xmlr.getLocalName().equals("city"))
-							cities.put(id,c);
+						//Quando si chiude il tag city, se il file xml e` corretto, l'oggetto
+						//c contiene tutti i dati necessari e quindi lo aggiungo alla mappa
+						if (xmlr.getLocalName().equals("city"))
+							cities.put(id, c);
 					default:
 						break;
 				}

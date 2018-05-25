@@ -3,9 +3,9 @@ package main;
 import java.util.ArrayList;
 
 public class City {
-	private int x,y,h;
+	private int x, y, h;
 	private String nome;
-	ArrayList<Integer> nodi = new ArrayList<>();
+	private ArrayList<Integer> nodi = new ArrayList<>(); //Citta con cui e` collegato
 
 	public City(int x, int y, int h, String nome) {
 		this.x = x;
@@ -14,11 +14,11 @@ public class City {
 		this.nome = nome;
 	}
 
-	public void addiungiNodo(int id){
+	public void addiungiNodo(int id) {
 		nodi.add(id);
 	}
 
-	public String toString(){
+	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Nome : ");
 		sb.append(nome);
@@ -50,7 +50,8 @@ public class City {
 	public String getNome() {
 		return nome;
 	}
-	public ArrayList<Integer> getNodi(){
+
+	public ArrayList<Integer> getNodi() {
 		return nodi;
 	}
 

@@ -24,7 +24,7 @@ public class Write {
 		try {
 			writer = output.createXMLStreamWriter(new FileWriter(filename));
 
-			writer.writeStartDocument("utf-8", "1.0");
+			writer.writeStartDocument("Cp1252", "1.0");
 			writer.writeStartElement("route");
 			writer.writeAttribute("team", TonatiuhTeam.getNomeTeam());
 			writer.writeAttribute("cost", ""+TonatiuhTeam.getCostoPercorso());

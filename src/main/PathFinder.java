@@ -13,32 +13,32 @@ public class PathFinder {
 	
 	}
 	
+	/** Dato uno dei 2 Team setta il percorso di quel team (dall'inizio all'arrivo) al suo percorso ottimo
+	* @param team unico parametro di ingresso.
+	*/
 	public void algDijkstra(String team){
 		Set <Integer> cittaDaControllare = new HashSet <Integer>();
-		ArrayList <Double> distanzaCart = new ArrayList <Double>();
-		ArrayList <Double> altezze = new ArrayList <Double>();
-		ArrayList <Integer> cittaAdiacenti;
+		ArrayList <Double> distanza = new ArrayList <Double>();
 		ArrayList <Integer>  precedente = new ArrayList <Integer>();
 		
 		//double distanzaCart = Double.POSITIVE_INFINITY;
 		//double altezze = Double.POSITIVE_INFINITY;
 		
 		for (Integer i:m.keySet()) {
-			//distanzaCart.add(Double.POSITIVE_INFINITY);
-			altezze.add(Double.POSITIVE_INFINITY);
-			precedente.add(null);  //unknown?
+			distanza.add(Double.POSITIVE_INFINITY);
+			precedente.add(null);  //unknown
 			cittaDaControllare.add(i);
 		}
 		
-		altezze.set(0, 0.0);
+		distanza.set(0, 0.0);
 		
 		do {
 			int t = 0;
 			double temp = Double.POSITIVE_INFINITY;
 			for (Integer i:cittaDaControllare) {
-				if(altezze.get(i)< temp) {
+				if(distanza.get(i)< temp) {
 					t = i;
-					temp = altezze.get(i);
+					temp = distanza.get(i);
 				}	
 			}
 			precedente.set(0,0);
@@ -53,32 +53,39 @@ public class PathFinder {
 				if(team.equals(MetztliTeam.getNomeTeam())) {
 					int h1 = m.get(t).getH();
 					int h2 = m.get(i).getH();
-					dist = altezze.get(t) + Math.abs(h1 - h2);
+					dist = distanza.get(t) + Math.abs(h1 - h2);
 				}
 				else {
 					int x1 = m.get(t).getX();
 					int y1 = m.get(t).getY();
 					int x2 = m.get(i).getX();
 					int y2 = m.get(i).getY();
-					dist = altezze.get(t) + Math.hypot(x2-x1,y2-y1);
+					dist = distanza.get(t) + Math.hypot(x2-x1,y2-y1);
 				}
-				if (dist < altezze.get(i)) {
-					altezze.set(i, dist);
+				if (dist < distanza.get(i)) {
+					distanza.set(i, dist);
 					precedente.set(i, t);
 				}
 			}
 				
 		}while(!cittaDaControllare.isEmpty());
 		if(team.equals(MetztliTeam.getNomeTeam())) {
-			MetztliTeam.setCostoPercorso(altezze.get(altezze.size()-1));
+			MetztliTeam.setCostoPercorso(distanza.get(distanza.size()-1));
 			MetztliTeam.setPercorso(ricavaPercorso(precedente));
 		}
 		else {
-			TonatiuhTeam.setCostoPercorso(altezze.get(altezze.size()-1));
+			TonatiuhTeam.setCostoPercorso(distanza.get(distanza.size()-1));
 			TonatiuhTeam.setPercorso(ricavaPercorso(precedente));
 		}
 	}
 
+	/** dato un ArrayList restituisce un ArrayList di Integer che ha come primo elemento l'ultimo
+	 * elemento dell'ArrayList d'ingresso e come successivi elementi gli elementi a ritroso
+	 * che formano il cammino minimo dall'elemento finale (Rovine Perdute) a quello iniziale (Campo Base).
+	 *metodo privato.
+	*@param precedente. 
+	*@return ArrayList ritorna un ArrayList di Integer. 
+	*/
 	private ArrayList<Integer> ricavaPercorso(ArrayList<Integer> precedente){
 		int ultimo = precedente.get(precedente.size()-1);
 		ArrayList<Integer> percorsoRitroso = new ArrayList<>();

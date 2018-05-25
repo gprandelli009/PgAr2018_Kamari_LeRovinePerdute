@@ -7,6 +7,12 @@ import utility.Write;
 public class MainRovine {
 	private static final String[] sceltaFile
 			= {"PgAr_Map_5","PgAr_Map_12","PgAr_Map_50","PgAr_Map_200","PgAr_Map_2000","PgAr_Map_10000"};
+	
+	
+	/**
+	 * metodo main del programma RovinePerdute
+	 * @param args Unused.
+	 */
 	public static void main(String[] args) {
 		int scelta;
 		for(int i=0;i<sceltaFile.length;i++){
